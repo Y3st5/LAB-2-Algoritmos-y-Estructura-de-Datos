@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45c5feb3f4631b43ad1a5247e32167b, type: 3}
   m_Name: Skill2
   m_EditorClassIdentifier: Assembly-CSharp::Skill
-  skillName: Fireball2
-  skillDescription: Es una bola de fuego omg
-  cost: 2
+  skillName: Rayo
+  skillDescription: Rayo Fuerte
+  cost: 3
   cooldown: 5
-  damage: 1
-  levelRestriction: 3
+  damage: 10
+  levelRestriction: 2
