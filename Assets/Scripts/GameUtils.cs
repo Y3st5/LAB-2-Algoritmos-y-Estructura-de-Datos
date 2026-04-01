@@ -6,7 +6,7 @@ using UnityEngine;
 //namespace Fortnite.Database
 //namespace Fortnite.Weapons
 
-namespace Sowtank.Utils
+namespace Y3st5.Utils
 {
     public class GameUtils
     {

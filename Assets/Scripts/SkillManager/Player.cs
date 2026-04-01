@@ -1,54 +1,26 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player :MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public Skill Target;
+    [SerializeField] private int level;
+    [SerializeField] private List<Skill> availableSkills;
 
-    public int Level;
+    public int Level => level;
+    public List<Skill> AvailableSkills => availableSkills;
 
-    public List<Skill> LearndSkills;
-    private void Start()
+    public bool CanUseSkill(Skill skill)
     {
-        //CheckName(Target);
-
-
-        
-
+        return level >= skill.LevelRestriction;
     }
 
-    public void CheckName(Skill target)
+    public bool LearnSkill(Skill skill)
     {
-        if(target == null)
+        if (level >= skill.LevelRestriction && !availableSkills.Contains(skill))
         {
-            Debug.LogWarning("Target skill is null.");
-            return;
+            availableSkills.Add(skill);
+            return true;
         }
-
-        SkillManager.Instance.NameOfSkill(target);
+        return false;
     }
-
-
-    public void TryToLearnSkill(Skill target)
-    {
-        if( SkillManager.Instance.TryLearnSkill(this, target, out Skill result))
-        {
-          
-            if(LearndSkills.Contains(target))
-            {
-                Debug.Log("Ya has aprendido esta habilidad");
-                return;
-            }
-            LearndSkills.Add(result);
-            Debug.Log("Haiblidad añadida");
-        }
-        else
-        {
-            Debug.Log("Cant learn right now :C , requieres el nivel"+ target.LevelRestriction);
-        }
-    }
-
-
-
 }

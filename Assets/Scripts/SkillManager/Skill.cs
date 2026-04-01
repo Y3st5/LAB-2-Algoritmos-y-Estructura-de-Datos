@@ -6,7 +6,7 @@ public class Skill : ScriptableObject
 {
    [SerializeField] private string skillName;
    [SerializeField] private string skillDescription;
-
+   [SerializeField] private int id;
    [SerializeField] private int cost;
    [SerializeField] private float cooldown;
    [SerializeField] private float damage;
@@ -18,6 +18,6 @@ public class Skill : ScriptableObject
     public int Cost => cost;
     public float Cooldown => cooldown;
     public float Damage => damage;
-
+    public int Id => id;
     public int LevelRestriction => levelRestriction;
 }
