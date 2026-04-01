@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 public class SkillUI : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class SkillUI : MonoBehaviour
 
     private void PopulateAvailableSkills()
     {
-        foreach (var skill in skillManager.AllSkills)
+        foreach (var skill in skillManager.SkillList)
         {
             var button = Instantiate(skillButtonPrefab, availableSkillsContainer);
             button.GetComponentInChildren<Text>().text = skill.SkillName;
@@ -28,7 +27,12 @@ public class SkillUI : MonoBehaviour
 
     private void PopulateLearnedSkills()
     {
-        foreach (var skill in player.AvailableSkills)
+        foreach (Transform child in learnedSkillsContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (var skill in player.LearndSkills)
         {
             var button = Instantiate(skillButtonPrefab, learnedSkillsContainer);
             button.GetComponentInChildren<Text>().text = skill.SkillName;
@@ -37,14 +41,7 @@ public class SkillUI : MonoBehaviour
 
     private void AttemptToLearnSkill(Skill skill)
     {
-        if (player.LearnSkill(skill))
-        {
-            Debug.Log($"Player learned skill: {skill.SkillName}");
-            PopulateLearnedSkills();
-        }
-        else
-        {
-            Debug.Log($"Player cannot learn skill: {skill.SkillName}");
-        }
+        player.TryToLearnSkill(skill);
+        PopulateLearnedSkills();
     }
 }
